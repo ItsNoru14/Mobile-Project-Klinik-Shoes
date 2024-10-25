@@ -7,24 +7,23 @@ import 'package:klinik_shoes_project/module/location/view/map_view.dart';
 
 
 class HomePageView extends StatefulWidget {
-  final HomePageController controller; // Tambahkan parameter controller
+  final HomePageController controller;
 
-  HomePageView({required this.controller}); // Ubah konstruktor
+  HomePageView({required this.controller});
 
   @override
   _HomePageViewState createState() => _HomePageViewState();
 }
 
 class _HomePageViewState extends State<HomePageView> {
-  late PageController _pageController; // Menggunakan late untuk inisialisasi
+  late PageController _pageController;
   int _currentBannerIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(); // Inisialisasi PageController di sini
+    _pageController = PageController();
 
-    // Listen to changes in the PageView to update the current banner index
     _pageController.addListener(() {
       setState(() {
         _currentBannerIndex = _pageController.page!.round();
@@ -34,7 +33,6 @@ class _HomePageViewState extends State<HomePageView> {
 
   @override
   void dispose() {
-    // Dispose of the PageController when the widget is removed
     _pageController.dispose();
     super.dispose();
   }
@@ -105,8 +103,7 @@ class _HomePageViewState extends State<HomePageView> {
               color: Colors.black,
             ),
           ),
-          SizedBox(height: 4), // Space between username and address
-          // Wrap the address section in GestureDetector to make it clickable
+          SizedBox(height: 4),
           GestureDetector(
             onTap: () {
               // Navigate to MapView when the address is clicked
