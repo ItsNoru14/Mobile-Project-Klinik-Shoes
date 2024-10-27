@@ -3,7 +3,6 @@ class SignupModel {
   String password = '';
   String confirmPassword = '';
 
-  // Validasi input username/email
   String? validateUsername() {
     if (username.isEmpty) {
       return 'Username atau Email tidak boleh kosong';
@@ -11,7 +10,6 @@ class SignupModel {
     return null;
   }
 
-  // Validasi password
   String? validatePassword() {
     if (password.isEmpty) {
       return 'Password tidak boleh kosong';
@@ -21,7 +19,6 @@ class SignupModel {
     return null;
   }
 
-  // Validasi konfirmasi password
   String? validateConfirmPassword() {
     if (confirmPassword.isEmpty) {
       return 'Konfirmasi Password tidak boleh kosong';

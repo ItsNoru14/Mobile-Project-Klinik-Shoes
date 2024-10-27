@@ -111,7 +111,7 @@ class WelcomePage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     // Navigate to LoginPage using GetX
-                    Get.to(() => LoginPageView(controller: LoginController())); // Ensure you have the right controller
+                    // Get.to(() => LoginPageView(controller: LoginController())); // Ensure you have the right controller
                   },
                   child: Container(
                     width: 350,
@@ -158,7 +158,7 @@ class WelcomePage extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     // Navigate to SignUpPage using GetX
-                    Get.to(() => SignupPageView(controller: SignupPageController())); // Ensure you have the right controller
+                    Get.to(() => SignupPageView()); // Ensure you have the right controller
                   },
                   child: Container(
                     width: 350,

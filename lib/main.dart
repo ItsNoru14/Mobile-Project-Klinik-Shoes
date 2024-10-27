@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart'; // Add this import
 import 'package:klinik_shoes_project/Routes/routes.dart';
 import 'package:klinik_shoes_project/core.dart';
-import 'package:klinik_shoes_project/module/history_page/view/history_page_view.dart';
-import 'package:klinik_shoes_project/module/location/view/map_view.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/profile_page.dart';
- // Import homepage view jika ada
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(); // Initialize Firebase
   runApp(MyApp());
 }
 
@@ -19,9 +18,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      // home: MapView()
-      initialRoute: AppRoutes.getHomeRoute(),
-      getPages: AppRoutes.routes
+      home: SignupPageView(),
+      // initialRoute: AppRoutes.getHomeRoute(),
+      // getPages: AppRoutes.routes
     );
   }
 }

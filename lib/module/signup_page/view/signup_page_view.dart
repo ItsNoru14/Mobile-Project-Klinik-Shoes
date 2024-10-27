@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../controller/signup_page_controller.dart';
 
-
 class SignupPageView extends StatelessWidget {
-  final SignupPageController controller;
-
-  SignupPageView({required this.controller});
+  final SignupPageController controller = Get.put(SignupPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -13,92 +11,42 @@ class SignupPageView extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // Background gradient and decorative circles
           _buildBackground(),
           Center(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Displaying the logo in the center with a larger size
-                  Container(
-                    width: 300, // Size of the logo
-                    height: 300,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage('asset/logo_klinik_shoes.png'),
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 30),
+                  _buildLogo(),
+                  const SizedBox(height: 30),
                   _buildTextField(
                     hintText: 'Username or Email',
                     iconPath: 'asset/user.png',
-                    onChanged: (value) => controller.setUsername(value),
+                    onChanged: controller.setUsername,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildTextField(
                     hintText: 'Password',
                     iconPath: 'asset/lock1.png',
                     obscureText: true,
-                    onChanged: (value) => controller.setPassword(value),
+                    onChanged: controller.setPassword,
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   _buildTextField(
                     hintText: 'Confirm Password',
                     iconPath: 'asset/lock1.png',
                     obscureText: true,
-                    onChanged: (value) => controller.setConfirmPassword(value),
+                    onChanged: controller.setConfirmPassword,
                   ),
-                  SizedBox(height: 16),
-                  Text('OR Continue with',
-                      style: TextStyle(color: Colors.black45)),
-                  SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // Google login button
-                      _buildSocialButton(
-                        assetPath: 'asset/Google.png',
-                        onTap: () {
-                          print("Login with Google");
-                        },
-                      ),
-                      SizedBox(width: 20),
-                      // Facebook login button
-                      _buildSocialButton(
-                        assetPath: 'asset/Facebook.png',
-                        onTap: () {
-                          print("Login with Facebook");
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 32),
-                  ElevatedButton(
-                    onPressed: () async {
-                      final result = controller.signup();
-                      if (result != null) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(result)),
-                        );
-                      }
-                    },
-                    child: Text('Sign Up'),
-                    style: ElevatedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 100, vertical: 15),
-                    ),
-                  ),
-                  SizedBox(height: 16),
-                  TextButton(
-                    onPressed: () {
-                      // Action for login
-                    },
-                    child: Text('Already have an account? Login here'),
-                  ),
+                  const SizedBox(height: 16),
+                  const Text('OR Continue with', style: TextStyle(color: Colors.black45)),
+                  const SizedBox(height: 16),
+                  _buildSocialButtons(),
+                  const SizedBox(height: 32),
+                  _buildSignUpButton(context),
+                  const SizedBox(height: 16),
+                  _buildLoginButton(),
                 ],
               ),
             ),
@@ -108,7 +56,19 @@ class SignupPageView extends StatelessWidget {
     );
   }
 
-  // Function to create TextField with PNG icons
+  Widget _buildLogo() {
+    return Container(
+      width: 300,
+      height: 300,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('asset/logo_klinik_shoes.png'),
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
   Widget _buildTextField({
     required String hintText,
     required String iconPath,
@@ -120,30 +80,45 @@ class SignupPageView extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
         filled: true,
-        fillColor: Colors.transparent, // Transparent background
+        fillColor: Colors.transparent,
         hintText: hintText,
-        hintStyle: TextStyle(color: Colors.black54), // Hint text color
+        hintStyle: const TextStyle(color: Colors.black54),
         prefixIcon: Padding(
-          padding: const EdgeInsets.all(12.0), // Padding around the icon
+          padding: const EdgeInsets.all(12.0),
           child: Image.asset(
-            iconPath, // Use PNG image as icon
-            width: 24, // Width of the image
-            height: 24, // Height of the image
+            iconPath,
+            width: 24,
+            height: 24,
           ),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8), // Rounded corners
-          borderSide: BorderSide(color: Colors.black), // Border color
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: Colors.black),
         ),
-        contentPadding: EdgeInsets.symmetric(vertical: 20), // Vertical padding
+        contentPadding: const EdgeInsets.symmetric(vertical: 20),
       ),
-      style: TextStyle(color: Colors.black), // Input text color
+      style: const TextStyle(color: Colors.black),
     );
   }
 
-  // Function to create social login buttons
-  Widget _buildSocialButton(
-      {required String assetPath, required VoidCallback onTap}) {
+  Widget _buildSocialButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        _buildSocialButton(
+          assetPath: 'asset/Google.png',
+          onTap: () => print("Login with Google"),
+        ),
+        const SizedBox(width: 20),
+        _buildSocialButton(
+          assetPath: 'asset/Facebook.png',
+          onTap: () => print("Login with Facebook"),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSocialButton({required String assetPath, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -160,88 +135,87 @@ class SignupPageView extends StatelessWidget {
     );
   }
 
-  // Function to create background with decorative circles
+  Widget _buildSignUpButton(BuildContext context) {
+  return ElevatedButton(
+    onPressed: () async {
+      await controller.signup();
+    },
+      child: const Text('Sign Up'),
+      style: ElevatedButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton() {
+    return TextButton(
+      onPressed: () {
+        Get.toNamed('/login'); // Example navigation using GetX routing
+      },
+      child: const Text('Already have an account? Login here'),
+    );
+  }
+
   Widget _buildBackground() {
     return Container(
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(234, 251, 249, 1), // Background color
+      decoration: const BoxDecoration(
+        color: Color.fromRGBO(234, 251, 249, 1),
       ),
       child: Stack(
         children: [
-          // Decorative circle in the top left
           Positioned(
             top: -111,
             left: -279,
-            child: Container(
-              width: 461,
-              height: 461,
-              decoration: ShapeDecoration(
-                color: Color(0xFF29D6C8),
-                shape: OvalBorder(),
-              ),
-            ),
+            child: _buildCircle(461, const Color(0xFF29D6C8)),
           ),
           Positioned(
             top: 16,
             left: -84,
-            child: Container(
-              width: 150,
-              height: 150,
-              decoration: ShapeDecoration(
-                shape: OvalBorder(
-                  side: BorderSide(
-                    width: 5,
-                    strokeAlign: BorderSide.strokeAlignOutside,
-                    color: Color(0xFF7EE6DE),
-                  ),
-                ),
-              ),
-            ),
+            child: _buildBorderedCircle(150, const Color(0xFF7EE6DE)),
           ),
-          // Decorative circle in the bottom left
           Positioned(
             top: 207,
             left: 219,
-            child: Container(
-              width: 280,
-              height: 280,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Color(0xFF29D6C8),
-              ),
-            ),
+            child: _buildCircle(280, const Color(0xFF29D6C8)),
           ),
           Positioned(
             top: 166,
             left: 300,
-            child: Container(
-              width: 150,
-              height: 150,
-              decoration: ShapeDecoration(
-                shape: OvalBorder(
-                  side: BorderSide(
-                    width: 5,
-                    strokeAlign: BorderSide.strokeAlignOutside,
-                    color: Color(0xFFA9EEE9),
-                  ),
-                ),
-              ),
-            ),
+            child: _buildBorderedCircle(150, const Color(0xFFA9EEE9)),
           ),
-          // Decorative circle in the bottom right
           Positioned(
             top: 484,
             left: -253,
-            child: Container(
-              width: 461,
-              height: 461,
-              decoration: ShapeDecoration(
-                color: Color(0xFF29D6C8),
-                shape: OvalBorder(),
-              ),
-            ),
+            child: _buildCircle(461, const Color(0xFF29D6C8)),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildCircle(double size, Color color) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: color,
+      ),
+    );
+  }
+
+  Widget _buildBorderedCircle(double size, Color borderColor) {
+    return Container(
+      width: size,
+      height: size,
+      decoration: ShapeDecoration(
+        shape: OvalBorder(
+          side: BorderSide(
+            width: 5,
+            strokeAlign: BorderSide.strokeAlignOutside,
+            color: borderColor,
+          ),
+        ),
       ),
     );
   }
