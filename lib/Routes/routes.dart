@@ -6,8 +6,6 @@ import 'package:klinik_shoes_project/module/login_page/view/login_page_view.dart
 import 'package:klinik_shoes_project/module/profile_page/view/profile_page.dart';
 import 'package:klinik_shoes_project/module/signup_page/view/signup_page_view.dart';
 import 'package:klinik_shoes_project/module/welcome_page/view/welcome_page_view.dart';
-import 'package:klinik_shoes_project/module/login_page/controller/login_page_controller.dart';
-// import 'package:klinik_shoes_project/module/signup_page/controller/signup_page_controller.dart';
 import 'package:klinik_shoes_project/module/homepage/view/homepage_view.dart';
 import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
 
@@ -30,10 +28,10 @@ class AppRoutes {
       page: () => WelcomePage(),
       name: welcome,
     ),
-    // GetPage(
-      // page: () => LoginPageView(controller: LoginController()),
-    //   name: login,
-    // ),
+    GetPage(
+      page: () => LoginPageView(),
+      name: login,
+    ),
     GetPage(
       page: () => SignupPageView(),
       name: signup,

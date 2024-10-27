@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
+import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/core.dart';
+import 'package:klinik_shoes_project/service/notification/NotificationService.dart';
 
 class SimpleCleaningView extends StatelessWidget {
+  // Definisikan instance NotificationService di sini
+  final NotificationService _notificationService = NotificationService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +17,7 @@ class SimpleCleaningView extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Get.to(HomePageView(controller: HomePageController())); // Menggunakan GetX untuk kembali ke halaman sebelumnya
+            _onBackPressed();
           },
         ),
         actions: [
@@ -164,5 +168,13 @@ class SimpleCleaningView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _onBackPressed() {
+    // Kembali ke halaman sebelumnya
+    getX.Get.to(HomePageView(controller: HomePageController()));
+
+    // Panggil fungsi untuk menampilkan notifikasi
+    _notificationService.showDelayedNotification();
   }
 }

@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart'; // Add this import
+import 'package:firebase_core/firebase_core.dart';
 import 'package:klinik_shoes_project/Routes/routes.dart';
 import 'package:klinik_shoes_project/core.dart';
+import 'package:klinik_shoes_project/service/notification/fcm_service.dart'; // Import FCMService
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(); // Initialize Firebase
+  await Firebase.initializeApp(); // Inisialisasi Firebase
+
+  // Inisialisasi FCMService
+  final fcmService = FCMService();
+  fcmService.init();
+
   runApp(MyApp());
 }
 
@@ -18,9 +24,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: SignupPageView(),
-      // initialRoute: AppRoutes.getHomeRoute(),
-      // getPages: AppRoutes.routes
+      initialRoute: AppRoutes.getHomeRoute(),
+      getPages: AppRoutes.routes,
     );
   }
 }
