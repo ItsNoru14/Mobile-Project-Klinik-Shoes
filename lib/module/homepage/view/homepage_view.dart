@@ -62,7 +62,9 @@ class _HomePageViewState extends State<HomePageView> {
                   SizedBox(height: 20),
                   _buildCategoriesSection(), // Bagian kategori
                   SizedBox(height: 20), // Jarak antara kategori dan promosi
-                  _buildPromotions(), // Bagian promosi dengan banner
+
+                  _buildPromotions(),
+                   // Bagian promosi dengan banner
                   SizedBox(height: 60), // Untuk menghindari overflow
                 ],
               ),
@@ -214,13 +216,13 @@ class _HomePageViewState extends State<HomePageView> {
         SizedBox(height: 10),
         // Set a specific height for the GridView container
         Container(
-          height: 200, // Adjust height as needed
+          height: 200, // Set height as needed
           child: GridView.count(
             crossAxisCount: 4,
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            mainAxisSpacing: 25, // Spacing between items vertically
-            crossAxisSpacing: 10, // Spacing between items horizontally
+            mainAxisSpacing: 20,
+            crossAxisSpacing: 10,
             children: [
               _buildCategoryItem('Simple\nCleaning', 'asset/Image1.png'),
               _buildCategoryItem('Deep\nCleaning', 'asset/Image2.png'),
@@ -243,8 +245,22 @@ class _HomePageViewState extends State<HomePageView> {
     return GestureDetector(
       onTap: () {
         if (title == 'Simple\nCleaning') {
-        getX.Get.toNamed(AppRoutes.simple_cleaning);
-        } // Ganti controller ke widget.controller
+          getX.Get.toNamed(AppRoutes.simple_cleaning);
+        } else if(title == 'Deep\nCleaning') {
+          getX.Get.toNamed(AppRoutes.deep_cleaning);
+        } else if (title == 'Change\nColor') {
+          getX.Get.toNamed(AppRoutes.change_color);
+        } else if (title == 'Leather\nCleaning') {
+          getX.Get.toNamed(AppRoutes.leather_cleaning);
+        } else if (title == 'Kids\nShoes') {
+          getX.Get.toNamed(AppRoutes.kids_shoes);
+        } else if (title == 'Woman\nShoes') {
+          getX.Get.toNamed(AppRoutes.woman_shoes);
+        } else if (title == 'Whitening\nTreatment') {
+          getX.Get.toNamed(AppRoutes.whitening_treatment);
+        } else if (title == 'One Day\nOrder') {
+          getX.Get.toNamed(AppRoutes.one_day_order);
+        }
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center, // Center vertically

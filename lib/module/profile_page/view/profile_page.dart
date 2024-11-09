@@ -3,6 +3,8 @@ import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/core.dart';
 import 'package:klinik_shoes_project/module/cart_page/view/cart_page_view.dart';
 import 'package:klinik_shoes_project/module/history_page/view/history_page_view.dart';
+import 'package:klinik_shoes_project/module/profile_page/view/edit_profile_view.dart';
+import 'package:klinik_shoes_project/module/profile_page/view/setting_view.dart';
 import 'package:klinik_shoes_project/module/webview/view/WebView_view.dart';
 
 
@@ -132,24 +134,24 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       ListTile(
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                        leading: Icon(Icons.person_outline, color: Colors.teal),
-                        title: Text('Edit User Profile'),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {
-                          // Navigate to Edit User Profile
-                        },
-                      ),
+                      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                      leading: Icon(Icons.person_outline, color: Colors.teal),
+                      title: Text('Edit User Profile'),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        getX.Get.to(() => EditProfilePage()); // Navigasi ke halaman EditProfilePage
+                      },
+                    ),
                       Divider(height: 1, thickness: 1),
-                      ListTile(
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                        leading: Icon(Icons.settings_outlined, color: Colors.teal),
-                        title: Text('Settings'),
-                        trailing: Icon(Icons.arrow_forward_ios),
-                        onTap: () {
-                          // Navigate to Settings
-                        },
-                      ),
+                     ListTile(
+                      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                      leading: Icon(Icons.settings_outlined, color: Colors.teal),
+                      title: Text('Settings'),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        getX.Get.to(() => SettingsPage()); // Navigasi ke halaman SettingsPage
+                      },
+                    ),
                       Divider(height: 1, thickness: 1),
                       ListTile(
                         contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
