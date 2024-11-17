@@ -11,7 +11,8 @@ class SettingsPage extends StatelessWidget {
   Future<void> _logout() async {
     try {
       await FirebaseAuth.instance.signOut();
-      Get.offAll(() => WelcomePage()); // Navigasi ke halaman landing page setelah logout
+      Get.offAll(() =>
+          WelcomePage()); // Navigasi ke halaman landing page setelah logout
     } catch (e) {
       Get.snackbar('Logout Failed', 'Error: $e');
     }

@@ -21,15 +21,21 @@ class _CartPageState extends State<CartPage> {
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomePageView(controller: HomePageController())));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomePageView(controller: HomePageController())));
         break;
       case 1:
         // Cart is the current page, do nothing
         break;
       case 2:
-            Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HistoryPage()));// Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HistoryPageView())); // Replace with your HistoryPage
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HistoryPage())); // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HistoryPageView())); // Replace with your HistoryPage
         break;
       case 3:
         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePageView())); // Replace with your ProfilePage
@@ -50,13 +56,14 @@ class _CartPageState extends State<CartPage> {
           style: TextStyle(color: Colors.black),
         ),
       ),
-        body: Container(
+      body: Container(
         padding: EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
               Color(0xFFEAFBF9), // Start color
-              Color(0xFF7FE6DE), // End color (change this to your preferred color)
+              Color(
+                  0xFF7FE6DE), // End color (change this to your preferred color)
             ],
             begin: Alignment.topCenter, // Gradient starts from the top
             end: Alignment.bottomCenter, // Gradient ends at the bottom
@@ -141,7 +148,8 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                           SizedBox(height: 8.0),
-                          Text('Pairs : 1\nDelivery fee : Rp.5.000\nPrice : Rp.50.000'),
+                          Text(
+                              'Pairs : 1\nDelivery fee : Rp.5.000\nPrice : Rp.50.000'),
                           SizedBox(height: 8.0),
                           Divider(),
                           Row(

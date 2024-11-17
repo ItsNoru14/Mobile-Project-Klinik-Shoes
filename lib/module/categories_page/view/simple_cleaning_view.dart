@@ -3,6 +3,7 @@ import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/core.dart';
 import 'package:klinik_shoes_project/service/notification/NotificationService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:klinik_shoes_project/module/camerapage/view/camerapage_view.dart';
 
 class SimpleCleaningView extends StatefulWidget {
   @override
@@ -19,7 +20,7 @@ class _SimpleCleaningViewState extends State<SimpleCleaningView> {
   int _quantity = 1;
   int _pricePerPair = 30000;
   int _deliveryFee = 5000;
-  
+
   // Compute subtotal and total dynamically
   int get _subtotal => _quantity * _pricePerPair;
   int get _totalPrice => _subtotal + _deliveryFee;
@@ -75,7 +76,8 @@ class _SimpleCleaningViewState extends State<SimpleCleaningView> {
                 style: TextStyle(fontSize: 14, color: Colors.black54),
               ),
               SizedBox(height: 20),
-              Text("Choose Pair", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text("Choose Pair",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -102,7 +104,8 @@ class _SimpleCleaningViewState extends State<SimpleCleaningView> {
                 ),
               ),
               SizedBox(height: 20),
-              Text("Pick Date", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              Text("Pick Date",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               SizedBox(height: 8),
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -122,6 +125,27 @@ class _SimpleCleaningViewState extends State<SimpleCleaningView> {
                 ),
               ),
               SizedBox(height: 20),
+              Text("Tambahkan Foto atau Video Sepatu",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              SizedBox(height: 8),
+              Container(
+                width: double.infinity,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    getX.Get.to(() => CameraPageView());
+                  },
+                  icon: Icon(Icons.camera_alt, color: Colors.white),
+                  label: Text("Buka Kamera"),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    backgroundColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
               Row(
                 children: [
                   Icon(Icons.local_shipping, color: Colors.black54),
@@ -130,7 +154,8 @@ class _SimpleCleaningViewState extends State<SimpleCleaningView> {
                   Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: Text('See Review', style: TextStyle(color: Colors.black54)),
+                    child: Text('See Review',
+                        style: TextStyle(color: Colors.black54)),
                   ),
                 ],
               ),

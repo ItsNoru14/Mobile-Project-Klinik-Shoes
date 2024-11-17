@@ -19,19 +19,25 @@ class _HistoryPageState extends State<HistoryPage> {
 
     switch (index) {
       case 0:
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => HomePageView(controller: HomePageController())));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    HomePageView(controller: HomePageController())));
         break;
       case 1:
-        Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => CartPage())); // Navigate to CartPage
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CartPage())); // Navigate to CartPage
         break;
       case 2:
         // History is the current page, do nothing
         break;
       case 3:
         // Uncomment and replace with your ProfilePage when implemented
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProfilePage()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ProfilePage()));
         break;
     }
   }
@@ -62,7 +68,7 @@ class _HistoryPageState extends State<HistoryPage> {
           gradient: LinearGradient(
             colors: [
               Color(0xFFEAFBF9), // Warna awal
-              Color(0xFF7FE6DE),            // Warna akhir
+              Color(0xFF7FE6DE), // Warna akhir
             ],
             begin: Alignment.topCenter, // Mulai dari atas
             end: Alignment.bottomCenter, // Berakhir di bawah
@@ -125,17 +131,25 @@ class _HistoryPageState extends State<HistoryPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Pairs:', style: TextStyle(fontSize: 12)),
+                                  Text('Pairs:',
+                                      style: TextStyle(fontSize: 12)),
                                   SizedBox(height: 4),
-                                  Text('Total Price:', style: TextStyle(fontSize: 12)),
+                                  Text('Total Price:',
+                                      style: TextStyle(fontSize: 12)),
                                 ],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text('1', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                  Text('1',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12)),
                                   SizedBox(height: 4),
-                                  Text('Rp. 55.000', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12)),
+                                  Text('Rp. 55.000',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 12)),
                                 ],
                               ),
                             ],

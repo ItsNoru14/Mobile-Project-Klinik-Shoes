@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/core.dart';
 
-
-
 class TransactionSuccessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -79,11 +77,13 @@ class TransactionSuccessPage extends StatelessWidget {
                     children: [
                       Text(
                         'Total Order : ',
-                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         'Rp.55.000',
-                        style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
@@ -113,10 +113,11 @@ class TransactionSuccessPage extends StatelessWidget {
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () =>
-                    Get.to(HomePageView(controller: HomePageController())),
-                    // Aksi yang dilakukan ketika tombol Continue ditekan,
+                      Get.to(HomePageView(controller: HomePageController())),
+                  // Aksi yang dilakukan ketika tombol Continue ditekan,
                   style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.black, backgroundColor: Colors.white,
+                    foregroundColor: Colors.black,
+                    backgroundColor: Colors.white,
                     side: BorderSide(color: Colors.green, width: 2),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24.0),

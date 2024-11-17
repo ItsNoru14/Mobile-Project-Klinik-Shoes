@@ -14,7 +14,8 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.loadProfile(); // Memuat data profil saat halaman pertama kali dibuka
+    controller
+        .loadProfile(); // Memuat data profil saat halaman pertama kali dibuka
 
     return Scaffold(
       appBar: AppBar(
@@ -37,16 +38,20 @@ class EditProfilePage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Obx(() {
           // Set nilai awal TextEditingController hanya jika belum diset
-          if (emailController.text.isEmpty && controller.profile['email']?.value.isNotEmpty == true) {
+          if (emailController.text.isEmpty &&
+              controller.profile['email']?.value.isNotEmpty == true) {
             emailController.text = controller.profile['email']?.value ?? '';
           }
-          if (nameController.text.isEmpty && controller.profile['name']?.value.isNotEmpty == true) {
+          if (nameController.text.isEmpty &&
+              controller.profile['name']?.value.isNotEmpty == true) {
             nameController.text = controller.profile['name']?.value ?? '';
           }
-          if (phoneController.text.isEmpty && controller.profile['phone']?.value.isNotEmpty == true) {
+          if (phoneController.text.isEmpty &&
+              controller.profile['phone']?.value.isNotEmpty == true) {
             phoneController.text = controller.profile['phone']?.value ?? '';
           }
-          if (addressController.text.isEmpty && controller.profile['address']?.value.isNotEmpty == true) {
+          if (addressController.text.isEmpty &&
+              controller.profile['address']?.value.isNotEmpty == true) {
             addressController.text = controller.profile['address']?.value ?? '';
           }
 
@@ -54,9 +59,12 @@ class EditProfilePage extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 50,
-                backgroundImage: (controller.profile['photoUrl']?.value.isNotEmpty ?? false)
+                backgroundImage: (controller
+                            .profile['photoUrl']?.value.isNotEmpty ??
+                        false)
                     ? NetworkImage(controller.profile['photoUrl']?.value ?? '')
-                    : AssetImage('assets/profile_placeholder.png') as ImageProvider,
+                    : AssetImage('assets/profile_placeholder.png')
+                        as ImageProvider,
               ),
               TextButton.icon(
                 onPressed: () {

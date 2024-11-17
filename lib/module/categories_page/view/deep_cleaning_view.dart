@@ -46,7 +46,8 @@ class DeepCleaningView extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.0),
                   image: DecorationImage(
-                    image: AssetImage('asset/simple_cleaning_logo.png'), // Gambar
+                    image:
+                        AssetImage('asset/simple_cleaning_logo.png'), // Gambar
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -113,7 +114,8 @@ class DeepCleaningView extends StatelessWidget {
                   Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: Text('See Review', style: TextStyle(color: Colors.black54)),
+                    child: Text('See Review',
+                        style: TextStyle(color: Colors.black54)),
                   ),
                 ],
               ),

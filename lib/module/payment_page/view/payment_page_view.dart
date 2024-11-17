@@ -93,14 +93,16 @@ class CheckoutPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PaymentMethodCard('ShopeePay', Icons.payment, Colors.orange),
-                PaymentMethodCard('Virtual Account', Icons.account_balance, Colors.blue),
+                PaymentMethodCard(
+                    'Virtual Account', Icons.account_balance, Colors.blue),
               ],
             ),
             SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                PaymentMethodCard('DANA', Icons.account_balance_wallet, Colors.blueAccent),
+                PaymentMethodCard(
+                    'DANA', Icons.account_balance_wallet, Colors.blueAccent),
                 PaymentMethodCard('Mastercard', Icons.credit_card, Colors.red),
               ],
             ),
@@ -112,11 +114,13 @@ class CheckoutPage extends StatelessWidget {
                 children: [
                   Text(
                     'Total : ',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     'Rp.56.500',
-                    style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -125,25 +129,24 @@ class CheckoutPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: ElevatedButton(
-  onPressed: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => SplashScreenPage()),
-    );
-  },
-  style: ElevatedButton.styleFrom(
-    backgroundColor: Colors.blue,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(24.0),
-    ),
-    minimumSize: Size(double.infinity, 50),
-  ),
-  child: Text(
-    'Continue',
-    style: TextStyle(fontSize: 16.0),
-  ),
-),
-
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SplashScreenPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(24.0),
+                  ),
+                  minimumSize: Size(double.infinity, 50),
+                ),
+                child: Text(
+                  'Continue',
+                  style: TextStyle(fontSize: 16.0),
+                ),
+              ),
             ),
             SizedBox(height: 16.0),
           ],

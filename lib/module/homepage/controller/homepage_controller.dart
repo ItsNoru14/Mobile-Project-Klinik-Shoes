@@ -30,7 +30,6 @@ class HomePageController {
     print('Category selected: $categoryName');
   }
 
-
   int getBannerCount() {
     return banners.length; // Get the number of banners
   }
@@ -39,24 +38,27 @@ class HomePageController {
     return banners[index]; // Get the banner image path by index
   }
 
-
-void onBottomNavTap(BuildContext context, int index) {
+  void onBottomNavTap(BuildContext context, int index) {
     switch (index) {
       case 0:
         // Navigate to Home Page
-        Navigator.pushNamed(context, '/home'); // Adjust the route name if necessary
+        Navigator.pushNamed(
+            context, '/home'); // Adjust the route name if necessary
         break;
       case 1:
         // Navigate to Cart Page
-        Navigator.pushNamed(context, '/cart'); // Adjust the route name if necessary
+        Navigator.pushNamed(
+            context, '/cart'); // Adjust the route name if necessary
         break;
       case 2:
         // Navigate to History Page
-        Navigator.pushNamed(context, '/history1'); // Adjust the route name if necessary
+        Navigator.pushNamed(
+            context, '/history1'); // Adjust the route name if necessary
         break;
       case 3:
         // Navigate to Profile Page
-        Navigator.pushNamed(context, '/profile'); // Adjust the route name if necessary
+        Navigator.pushNamed(
+            context, '/profile'); // Adjust the route name if necessary
         break;
       default:
         break;

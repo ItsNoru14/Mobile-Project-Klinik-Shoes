@@ -114,7 +114,8 @@ class KidShoesView extends StatelessWidget {
                   Spacer(),
                   TextButton(
                     onPressed: () {},
-                    child: Text('See Review', style: TextStyle(color: Colors.black54)),
+                    child: Text('See Review',
+                        style: TextStyle(color: Colors.black54)),
                   ),
                 ],
               ),

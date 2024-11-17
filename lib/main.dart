@@ -1,10 +1,7 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:klinik_shoes_project/Routes/routes.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/edit_profile_view.dart';
-// import 'package:klinik_shoes_project/core.dart';
-import 'package:klinik_shoes_project/service/notification/fcm_service.dart';
+import 'package:klinik_shoes_project/core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,7 +10,7 @@ void main() async {
   // Inisialisasi FCMService
   final fcmService = FCMService();
   fcmService.init();
-
+  
   runApp(MyApp());
 }
 
@@ -25,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: EditProfilePage(),
+      home: CameraPageView()
       // initialRoute: AppRoutes.getHomeRoute(),
       // getPages: AppRoutes.routes,
     );

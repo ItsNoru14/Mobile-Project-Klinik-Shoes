@@ -18,14 +18,17 @@ class EditProfileController extends GetxController {
 
   // Fungsi untuk memilih dan mengunggah gambar
   Future<void> selectAndUploadProfileImage() async {
-    final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       File file = File(pickedFile.path);
 
       try {
         // Nama file unik menggunakan waktu saat ini
-        String fileName = 'profile_images/${DateTime.now().millisecondsSinceEpoch}.jpg';
-        firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+        String fileName =
+            'profile_images/${DateTime.now().millisecondsSinceEpoch}.jpg';
+        firebase_storage.Reference ref =
+            firebase_storage.FirebaseStorage.instance.ref().child(fileName);
 
         // Mengunggah gambar ke Firebase Storage
         await ref.putFile(file);
@@ -47,7 +50,8 @@ class EditProfileController extends GetxController {
   // Fungsi untuk memuat profil dari database (termasuk foto URL)
   void loadProfile() async {
     // Misalnya, mendapatkan URL dari database Firestore atau Realtime Database
-    var photoUrl = await getPhotoUrlFromDatabase(); // metode untuk memuat URL dari database
+    var photoUrl =
+        await getPhotoUrlFromDatabase(); // metode untuk memuat URL dari database
     if (photoUrl.isNotEmpty) {
       profile['photoUrl']?.value = photoUrl; // Safe access using ?.value
     }
@@ -57,10 +61,12 @@ class EditProfileController extends GetxController {
   Future<String> getPhotoUrlFromDatabase() async {
     try {
       // Path ke gambar di Firebase Storage
-      String photoPath = 'profile_images/nature-landscape.jpg'; // Ganti dengan nama file yang sesuai
+      String photoPath =
+          'profile_images/nature-landscape.jpg'; // Ganti dengan nama file yang sesuai
 
       // Ambil referensi file dari Firebase Storage
-      firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance.ref().child(photoPath);
+      firebase_storage.Reference ref =
+          firebase_storage.FirebaseStorage.instance.ref().child(photoPath);
 
       // Ambil URL file tersebut
       String downloadURL = await ref.getDownloadURL();
@@ -68,21 +74,26 @@ class EditProfileController extends GetxController {
       return downloadURL;
     } catch (e) {
       print("Error getting photo URL: $e");
-      return '';  // Kembalikan URL kosong jika terjadi error
+      return ''; // Kembalikan URL kosong jika terjadi error
     }
   }
 
   // Fungsi untuk menyimpan perubahan profil ke Firestore
-  Future<void> saveProfile(String email, String name, String phone, String address) async {
+  Future<void> saveProfile(
+      String email, String name, String phone, String address) async {
     try {
       var user = FirebaseAuth.instance.currentUser;
       if (user != null) {
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update({
           'email': email,
           'name': name,
           'phone': phone,
           'address': address,
-          'photoUrl': profile['photoUrl']?.value ?? '', // Safe access with null check
+          'photoUrl':
+              profile['photoUrl']?.value ?? '', // Safe access with null check
         });
       }
     } catch (e) {
@@ -96,7 +107,10 @@ class EditProfileController extends GetxController {
       var user = FirebaseAuth.instance.currentUser;
       if (user != null) {
         // Simpan URL foto di Firestore
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).update({
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(user.uid)
+            .update({
           'photoUrl': downloadURL,
         });
       }

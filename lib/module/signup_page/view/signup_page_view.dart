@@ -40,7 +40,8 @@ class SignupPageView extends StatelessWidget {
                     onChanged: controller.setConfirmPassword,
                   ),
                   const SizedBox(height: 16),
-                  const Text('OR Continue with', style: TextStyle(color: Colors.black45)),
+                  const Text('OR Continue with',
+                      style: TextStyle(color: Colors.black45)),
                   const SizedBox(height: 16),
                   _buildSocialButtons(),
                   const SizedBox(height: 32),
@@ -118,7 +119,8 @@ class SignupPageView extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialButton({required String assetPath, required VoidCallback onTap}) {
+  Widget _buildSocialButton(
+      {required String assetPath, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -136,10 +138,10 @@ class SignupPageView extends StatelessWidget {
   }
 
   Widget _buildSignUpButton(BuildContext context) {
-  return ElevatedButton(
-    onPressed: () async {
-      await controller.signup();
-    },
+    return ElevatedButton(
+      onPressed: () async {
+        await controller.signup();
+      },
       child: const Text('Sign Up'),
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),

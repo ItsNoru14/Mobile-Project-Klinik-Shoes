@@ -81,7 +81,9 @@ class LoginPageView extends StatelessWidget {
                       User? user = await controller.loginWithEmailPassword();
                       if (user != null) {
                         // Navigasi ke homepage jika login berhasil
-                        getX.Get.offAll(() => HomePageView(controller: HomePageController()));// Menghapus semua halaman sebelumnya dan menuju ke Homepage
+                        getX.Get.offAll(() => HomePageView(
+                            controller:
+                                HomePageController())); // Menghapus semua halaman sebelumnya dan menuju ke Homepage
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Login successful!')),
                         );
@@ -96,7 +98,8 @@ class LoginPageView extends StatelessWidget {
                       // Kontainer Tombol Login
                       width: 350,
                       height: 50,
-                      padding: const EdgeInsets.symmetric(horizontal: 109, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 109, vertical: 5),
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(

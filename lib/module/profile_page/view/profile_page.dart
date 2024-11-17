@@ -7,7 +7,6 @@ import 'package:klinik_shoes_project/module/profile_page/view/edit_profile_view.
 import 'package:klinik_shoes_project/module/profile_page/view/setting_view.dart';
 import 'package:klinik_shoes_project/module/webview/view/WebView_view.dart';
 
-
 class ProfilePage extends StatefulWidget {
   @override
   _ProfilePageState createState() => _ProfilePageState();
@@ -26,19 +25,23 @@ class _ProfilePageState extends State<ProfilePage> {
       case 0:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePageView(controller: HomePageController())), // Navigate to Home
+          MaterialPageRoute(
+              builder: (context) => HomePageView(
+                  controller: HomePageController())), // Navigate to Home
         );
         break;
       case 1:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => CartPage()), // Navigate to Cart
+          MaterialPageRoute(
+              builder: (context) => CartPage()), // Navigate to Cart
         );
         break;
       case 2:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HistoryPage()), // Navigate to History
+          MaterialPageRoute(
+              builder: (context) => HistoryPage()), // Navigate to History
         );
         break;
       case 3:
@@ -58,7 +61,9 @@ class _ProfilePageState extends State<ProfilePage> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => HomePageView(controller: HomePageController())), // Navigate to Home
+              MaterialPageRoute(
+                  builder: (context) => HomePageView(
+                      controller: HomePageController())), // Navigate to Home
             );
           },
         ),
@@ -70,7 +75,8 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => CartPage()), // Navigate to Cart
+                MaterialPageRoute(
+                    builder: (context) => CartPage()), // Navigate to Cart
               );
             },
           ),
@@ -80,7 +86,8 @@ class _ProfilePageState extends State<ProfilePage> {
         children: [
           Container(
             color: Color(0xFF29D6C8),
-            padding: EdgeInsets.only(top: 50, bottom: 60, right: 121.8, left: 121.5),
+            padding:
+                EdgeInsets.only(top: 50, bottom: 60, right: 121.8, left: 121.5),
             child: Column(
               children: [
                 Container(
@@ -134,33 +141,41 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       ListTile(
-                      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                      leading: Icon(Icons.person_outline, color: Colors.teal),
-                      title: Text('Edit User Profile'),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                      onTap: () {
-                        getX.Get.to(() => EditProfilePage()); // Navigasi ke halaman EditProfilePage
-                      },
-                    ),
-                      Divider(height: 1, thickness: 1),
-                     ListTile(
-                      contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                      leading: Icon(Icons.settings_outlined, color: Colors.teal),
-                      title: Text('Settings'),
-                      trailing: Icon(Icons.arrow_forward_ios),
-                      onTap: () {
-                        getX.Get.to(() => SettingsPage()); // Navigasi ke halaman SettingsPage
-                      },
-                    ),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        leading: Icon(Icons.person_outline, color: Colors.teal),
+                        title: Text('Edit User Profile'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          getX.Get.to(() =>
+                              EditProfilePage()); // Navigasi ke halaman EditProfilePage
+                        },
+                      ),
                       Divider(height: 1, thickness: 1),
                       ListTile(
-                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        leading:
+                            Icon(Icons.settings_outlined, color: Colors.teal),
+                        title: Text('Settings'),
+                        trailing: Icon(Icons.arrow_forward_ios),
+                        onTap: () {
+                          getX.Get.to(() =>
+                              SettingsPage()); // Navigasi ke halaman SettingsPage
+                        },
+                      ),
+                      Divider(height: 1, thickness: 1),
+                      ListTile(
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                         leading: Icon(Icons.phone_outlined, color: Colors.teal),
                         title: Text('Call Center'),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
                           // Navigate to WebView page for Instagram
-                          getX.Get.to(WebViewPage(url: 'https://www.instagram.com/_dmsaw/')); // Using GetX for navigation
+                          getX.Get.to(WebViewPage(
+                              url:
+                                  'https://www.instagram.com/_dmsaw/')); // Using GetX for navigation
                         },
                       ),
                     ],

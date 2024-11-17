@@ -17,7 +17,7 @@ class _WelcomePageState extends State<WelcomePage> {
     super.initState();
     _notificationService.init();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,11 +126,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: Container(
                         width: 350,
                         height: 50,
-                        padding: const EdgeInsets.symmetric(horizontal: 109, vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 109, vertical: 5),
                         decoration: ShapeDecoration(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 5, color: Color(0xFFBEF2EE)),
+                            side:
+                                BorderSide(width: 5, color: Color(0xFFBEF2EE)),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           shadows: [
@@ -172,11 +174,13 @@ class _WelcomePageState extends State<WelcomePage> {
                       child: Container(
                         width: 350,
                         height: 50,
-                        padding: const EdgeInsets.symmetric(horizontal: 103, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 103, vertical: 8),
                         decoration: ShapeDecoration(
                           color: Colors.white,
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 5, color: Color(0xFFA9EEE9)),
+                            side:
+                                BorderSide(width: 5, color: Color(0xFFA9EEE9)),
                             borderRadius: BorderRadius.circular(30),
                           ),
                           shadows: [
