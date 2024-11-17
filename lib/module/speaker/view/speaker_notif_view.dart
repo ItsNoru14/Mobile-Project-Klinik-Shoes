@@ -1,35 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import '../controller/settings_controller.dart';
+import 'package:klinik_shoes_project/module/speaker/controller/speaker_notif_controller.dart';
 import 'package:klinik_shoes_project/model/speaker/audio_notification_model.dart';
-import 'package:klinik_shoes_project/module/welcome_page/view/welcome_page_view.dart';
 
-class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
-
+class SpeakerPageView extends StatefulWidget {
   @override
-  _SettingsPageState createState() => _SettingsPageState();
+  _SpeakerPageViewState createState() => _SpeakerPageViewState();
 }
 
-class _SettingsPageState extends State<SettingsPage> {
-  late final SettingsController controller;
+class _SpeakerPageViewState extends State<SpeakerPageView> {
+  late final SpeakerController controller;
   late final AudioNotificationModel model;
 
   @override
   void initState() {
     super.initState();
     model = AudioNotificationModel();
-    controller = SettingsController(model);
-  }
-
-  Future<void> _logout() async {
-    try {
-      await FirebaseAuth.instance.signOut();
-      Get.offAll(() => WelcomePage()); // Navigasi ke halaman landing page setelah logout
-    } catch (e) {
-      Get.snackbar('Logout Failed', 'Error: $e');
-    }
+    controller = SpeakerController(model);
   }
 
   @override
@@ -37,7 +23,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Settings'),
-        backgroundColor: const Color(0xFF29D6C8),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -47,7 +32,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
               title: const Text('Logout'),
-              onTap: _logout,
+              onTap: () {
+                // Tambahkan fungsi logout
+              },
             ),
             const Divider(),
             ListTile(

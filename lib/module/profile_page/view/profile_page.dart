@@ -175,7 +175,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           // Navigate to WebView page for Instagram
                           getX.Get.to(WebViewPage(
                               url:
-                                  'https://www.instagram.com/_dmsaw/')); // Using GetX for navigation
+                                  'https://www.instagram.com/klinik__shoes?igsh=M3RvZjFmYmwxbmkz')); // Using GetX for navigation
                         },
                       ),
                     ],

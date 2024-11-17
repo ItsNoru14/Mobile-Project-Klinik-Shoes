@@ -49,6 +49,9 @@ dependencies:
   geocoding: ^3.0.0
   latlong2: 0.9.1
   url_launcher: ^6.1.6
+  speech_to_text: ^7.0.0
+  permission_handler: ^11.3.1
+  audioplayers: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -105,6 +108,9 @@ flutter:
     - asset/one_day_order.png
     - asset/change_color.png
     - asset/whitening_logo.png
+    - asset/audio/ding.mp3
+    - asset/audio/gopay.flac
+    - asset/audio/gopay.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:
