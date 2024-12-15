@@ -1,7 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/model/category/category_model.dart';
+import 'package:get/get.dart';
+import 'package:klinik_shoes_project/module/profile_page/controller/edit_profile_controller.dart';
+import 'package:klinik_shoes_project/model/profile_model.dart';
 
-class HomePageController {
+class HomePageController extends GetxController {
+  final EditProfileController _editProfileController = Get.put(EditProfileController());
+
+  // Gunakan Rx untuk profil pengguna
+  Rx<UserProfile?> userProfile = Rx<UserProfile?>(null);
+
+  @override
+  void onInit() {
+    super.onInit();
+    // Memuat profil pengguna awal
+    _loadUserProfile();
+  }
+
+  void _loadUserProfile() {
+    userProfile.value = UserProfile(
+      id: _editProfileController.profile['id']?.value ?? '',
+      email: _editProfileController.profile['email']?.value ?? '',
+      name: _editProfileController.profile['name']?.value ?? '',
+      phone: _editProfileController.profile['phone']?.value ?? '',
+      address: _editProfileController.profile['address']?.value ?? '',
+      photoPath: _editProfileController.profile['photoPath']?.value ?? '',
+    );
+  }
+
+  void updateProfileData() {
+    _loadUserProfile();
+  }
+
   // Sample data for categories
   final List<Category> categories = [
     Category(name: 'Simple Cleaning', iconPath: 'assets/simple_cleaning.png'),
@@ -19,11 +49,7 @@ class HomePageController {
     'asset/Banner_1.png',
     'asset/Banner_2.png',
     // Add more banners as needed
-  ];
-
-  String getUserName() {
-    return 'Dimas Arief W.'; // Return the username
-  }
+  ];// Default empty photo path
 
   void onCategorySelected(String categoryName) {
     // Handle category selection logic here
@@ -63,5 +89,5 @@ class HomePageController {
       default:
         break;
     }
-  }
+}
 }

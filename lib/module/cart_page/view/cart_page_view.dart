@@ -25,7 +25,7 @@ class _CartPageState extends State<CartPage> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    HomePageView(controller: HomePageController())));
+                    HomePageView()));
         break;
       case 1:
         // Cart is the current page, do nothing

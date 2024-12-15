@@ -113,7 +113,7 @@ class TransactionSuccessPage extends StatelessWidget {
                 SizedBox(height: 16.0),
                 ElevatedButton(
                   onPressed: () =>
-                      Get.to(HomePageView(controller: HomePageController())),
+                      Get.to(HomePageView()),
                   // Aksi yang dilakukan ketika tombol Continue ditekan,
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.black,

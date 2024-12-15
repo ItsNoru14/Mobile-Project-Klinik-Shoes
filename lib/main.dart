@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/core.dart';
 import 'depedency_injection.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,6 +14,7 @@ void main() async {
 
   // Initialize the Dependency Injection  
   DependencyInjection.init();
+  await GetStorage.init();
 
   runApp(MyApp());
 }

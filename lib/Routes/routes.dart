@@ -11,7 +11,7 @@ import 'package:klinik_shoes_project/module/categories_page/view/woman_shoes_vie
 import 'package:klinik_shoes_project/module/categories_page/binding/simple_cleaning_binding.dart';
 import 'package:klinik_shoes_project/module/history_page/view/history_page_view.dart';
 import 'package:klinik_shoes_project/module/login_page/view/login_page_view.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/profile_page.dart';
+import 'package:klinik_shoes_project/module/profile_page/view/profile_view.dart';
 import 'package:klinik_shoes_project/module/signup_page/view/signup_page_view.dart';
 import 'package:klinik_shoes_project/module/welcome_page/view/welcome_page_view.dart';
 import 'package:klinik_shoes_project/module/homepage/view/homepage_view.dart';
@@ -53,10 +53,12 @@ class AppRoutes {
       name: signup,
     ),
     GetPage(
-      page: () =>
-          HomePageView(controller: HomePageController()), // Perbaikan di sini
-      name: home,
-    ),
+    page: () => HomePageView(),
+    name: home,
+    binding: BindingsBuilder(() {
+      Get.lazyPut(() => HomePageController());
+  }),
+),
     GetPage(
       page: () => CameraPageView(),
       name: camera,

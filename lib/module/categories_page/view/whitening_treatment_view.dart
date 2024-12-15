@@ -173,7 +173,7 @@ class WhiteningTreatmentView extends StatelessWidget {
 
   void _onBackPressed() {
     // Kembali ke halaman sebelumnya
-    getX.Get.to(HomePageView(controller: HomePageController()));
+    getX.Get.to(HomePageView());
 
     // Panggil fungsi untuk menampilkan notifikasi
     _notificationService.showDelayedNotification();

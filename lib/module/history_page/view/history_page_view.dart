@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/module/cart_page/view/cart_page_view.dart';
 import 'package:klinik_shoes_project/module/homepage/view/homepage_view.dart';
 import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/profile_page.dart';
+import 'package:klinik_shoes_project/module/profile_page/view/profile_view.dart';
 
 class HistoryPage extends StatefulWidget {
   @override
@@ -23,7 +23,7 @@ class _HistoryPageState extends State<HistoryPage> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    HomePageView(controller: HomePageController())));
+                    HomePageView()));
         break;
       case 1:
         Navigator.pushReplacement(

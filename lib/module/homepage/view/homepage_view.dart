@@ -1,14 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/Routes/routes.dart';
 import 'package:klinik_shoes_project/core.dart';
 import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
 import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/module/location/view/map_view.dart';
+import 'package:klinik_shoes_project/model/profile_model.dart';
 
 class HomePageView extends StatefulWidget {
-  final HomePageController controller;
-
-  HomePageView({required this.controller});
+  final HomePageController controller = getX.Get.put(HomePageController());
 
   @override
   _HomePageViewState createState() => _HomePageViewState();
@@ -87,117 +88,121 @@ class _HomePageViewState extends State<HomePageView> {
       children: [
         // Left side: Hello and address section
         Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start, // Align text to the left
-          children: [
-            // Hello text
-            Text(
-              'Hello,',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.black54,
-                fontFamily: 'Sora',
-                fontWeight: FontWeight.w400,
-              ),
+        crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+        children: [
+          // Hello text
+          Text(
+            'Hello,',
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black54,
+              fontFamily: 'Sora',
+              fontWeight: FontWeight.w400,
             ),
-            // Username text
-            Text(
-              widget.controller
-                  .getUserName(), // Use widget.controller for access
+          ),
+          // Username text - Using Obx for reactivity
+          getX.Obx(() {
+            final userName = widget.controller.userProfile.value?.name ?? 'No Name';
+            return Text(
+              userName,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
-            ),
-            SizedBox(height: 4),
-            GestureDetector(
-              onTap: () {
-                // Navigate to MapView when the address is clicked
-                getX.Get.to(() => MapView());
-              },
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment
-                    .center, // Align icon and text in the center
-                children: [
-                  // Custom address icon
-                  Container(
-                    width: 26.19,
-                    height: 26.19,
-                    child: Image.asset('asset/marker-pin.png'), // PNG asset
-                  ),
-                  SizedBox(width: 8), // Space between icon and address
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment
-                        .start, // Align address text to the left
-                    children: [
-                      Text(
-                        'Kos ku',
-                        style: TextStyle(
-                          color: Colors.black.withOpacity(0.75),
-                          fontSize: 12,
-                          fontFamily: 'Sora',
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Jl. Begawan, No 2',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 12,
-                              fontFamily: 'Sora',
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          SizedBox(width: 4), // Space between address and arrow
-                          // Downward arrow image
-                          Container(
-                            width: 20,
-                            height: 20,
-                            child: Image.asset(
-                              'asset/arrow-bawah.png',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        // Right side: Notifications and profile picture
-        Row(
-          children: [
-            Stack(
+            );
+          }),
+          SizedBox(height: 4),
+          GestureDetector(
+            onTap: () {
+              // Navigate to MapView when the address is clicked
+              getX.Get.to(() => MapView());
+            },
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center, // Align icon and text in the center
               children: [
-                Icon(Icons.notifications, size: 30),
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.red,
+                // Custom address icon
+                Container(
+                  width: 26.19,
+                  height: 26.19,
+                  child: Image.asset('asset/marker-pin.png'), // PNG asset
+                ),
+                SizedBox(width: 8), // Space between icon and address
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, // Align address text to the left
+                  children: [
+                    Text(
+                      'Kos ku',
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.75),
+                        fontSize: 12,
+                        fontFamily: 'Sora',
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
-                  ),
+                    Row(
+                      children: [
+                        Text(
+                          'Jl. Begawan, No 2',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 12,
+                            fontFamily: 'Sora',
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        SizedBox(width: 4), // Space between address and arrow
+                        // Downward arrow image
+                        Container(
+                          width: 20,
+                          height: 20,
+                          child: Image.asset(
+                            'asset/arrow-bawah.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
               ],
             ),
-            SizedBox(width: 14), // Space between icon and avatar
-            CircleAvatar(
+          ),
+        ],
+      ),
+      // Right side: Notifications and profile picture
+      Row(
+        children: [
+          Stack(
+            children: [
+              Icon(Icons.notifications, size: 30),
+              Positioned(
+                right: 0,
+                top: 0,
+                child: Container(
+                  width: 10,
+                  height: 10,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(width: 14), // Space between icon and avatar
+          getX.Obx(() {
+            final photoPath = widget.controller.userProfile.value?.photoPath ?? '';
+            return CircleAvatar(
               radius: 20,
-              backgroundImage: AssetImage(
-                  'asset/profile-picture.png'), // Profile picture asset
-            ),
-          ],
-        ),
+              backgroundImage: photoPath.isNotEmpty
+                  ? FileImage(File(photoPath))
+                  : AssetImage('assets/profile-placeholder.png') as ImageProvider,
+            );
+          }),
+        ],
+      )
+
       ],
     );
   }

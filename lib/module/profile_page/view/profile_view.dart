@@ -1,11 +1,7 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/core.dart';
-import 'package:klinik_shoes_project/module/cart_page/view/cart_page_view.dart';
-import 'package:klinik_shoes_project/module/history_page/view/history_page_view.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/edit_profile_view.dart';
-import 'package:klinik_shoes_project/module/profile_page/view/setting_view.dart';
-import 'package:klinik_shoes_project/module/webview/view/WebView_view.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -14,6 +10,19 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   int _selectedIndex = 3; // Default index for Profile
+  final EditProfileController controller = getX.Get.put(EditProfileController());
+
+  @override
+  void initState() {
+    super.initState();
+    // Load profile data when the page initializes
+    controller.loadProfile(
+      TextEditingController(),
+      TextEditingController(),
+      TextEditingController(),
+      TextEditingController(),
+    );
+  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -25,27 +34,23 @@ class _ProfilePageState extends State<ProfilePage> {
       case 0:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => HomePageView(
-                  controller: HomePageController())), // Navigate to Home
+          MaterialPageRoute(builder: (context) => HomePageView()),
         );
         break;
       case 1:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => CartPage()), // Navigate to Cart
+          MaterialPageRoute(builder: (context) => CartPage()),
         );
         break;
       case 2:
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(
-              builder: (context) => HistoryPage()), // Navigate to History
+          MaterialPageRoute(builder: (context) => HistoryPage()),
         );
         break;
       case 3:
-        // You are already on Profile page, so no need to navigate
+        // Already on Profile page, no action needed
         break;
     }
   }
@@ -61,9 +66,7 @@ class _ProfilePageState extends State<ProfilePage> {
           onPressed: () {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(
-                  builder: (context) => HomePageView(
-                      controller: HomePageController())), // Navigate to Home
+              MaterialPageRoute(builder: (context) => HomePageView()),
             );
           },
         ),
@@ -75,8 +78,7 @@ class _ProfilePageState extends State<ProfilePage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CartPage()), // Navigate to Cart
+                MaterialPageRoute(builder: (context) => CartPage()),
               );
             },
           ),
@@ -87,37 +89,41 @@ class _ProfilePageState extends State<ProfilePage> {
           Container(
             color: Color(0xFF29D6C8),
             padding:
-                EdgeInsets.only(top: 50, bottom: 60, right: 121.8, left: 121.5),
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 4),
+                EdgeInsets.only(top: 30, bottom: 40, right: 135, left: 139),
+            child: getX.Obx(() {
+              return Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 4),
+                    ),
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: controller.profile['photoPath']?.value.isNotEmpty ?? false
+                          ? FileImage(File(controller.profile['photoPath']!.value))
+                          : AssetImage('assets/profile-placeholder.png') as ImageProvider,
+                    ),
                   ),
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('asset/profile-picture.png'),
+                  SizedBox(height: 10),
+                  Text(
+                    controller.profile['name']?.value ?? '',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  'Dimas Arief W.',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                  Text(
+                    controller.profile['email']?.value ?? '',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
-                Text(
-                  'Dummy@example.com',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.black,
-                  ),
-                ),
-              ],
-            ),
+                ],
+              );
+            }),
           ),
           Expanded(
             child: ListView(
@@ -141,41 +147,32 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: Column(
                     children: [
                       ListTile(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                         leading: Icon(Icons.person_outline, color: Colors.teal),
                         title: Text('Edit User Profile'),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
-                          getX.Get.to(() =>
-                              EditProfilePage()); // Navigasi ke halaman EditProfilePage
+                          getX.Get.to(() => EditProfilePage());
                         },
                       ),
                       Divider(height: 1, thickness: 1),
                       ListTile(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                        leading:
-                            Icon(Icons.settings_outlined, color: Colors.teal),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        leading: Icon(Icons.settings_outlined, color: Colors.teal),
                         title: Text('Settings'),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
-                          getX.Get.to(() =>
-                              SettingsPage()); // Navigasi ke halaman SettingsPage
+                          getX.Get.to(() => SettingsPage());
                         },
                       ),
                       Divider(height: 1, thickness: 1),
                       ListTile(
-                        contentPadding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                        contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                         leading: Icon(Icons.phone_outlined, color: Colors.teal),
                         title: Text('Call Center'),
                         trailing: Icon(Icons.arrow_forward_ios),
                         onTap: () {
-                          // Navigate to WebView page for Instagram
-                          getX.Get.to(WebViewPage(
-                              url:
-                                  'https://www.instagram.com/klinik__shoes?igsh=M3RvZjFmYmwxbmkz')); // Using GetX for navigation
+                          getX.Get.to(WebViewPage(url: 'https://www.instagram.com/klinik__shoes?igsh=M3RvZjFmYmwxbmkz'));
                         },
                       ),
                     ],

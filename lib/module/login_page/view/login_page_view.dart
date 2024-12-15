@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/core.dart';
 import 'package:klinik_shoes_project/module/login_page/controller/login_page_controller.dart';
+// import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
 import 'package:get/get.dart' as getX;
 
 class LoginPageView extends StatelessWidget {
@@ -81,9 +82,7 @@ class LoginPageView extends StatelessWidget {
                       User? user = await controller.loginWithEmailPassword();
                       if (user != null) {
                         // Navigasi ke homepage jika login berhasil
-                        getX.Get.offAll(() => HomePageView(
-                            controller:
-                                HomePageController())); // Menghapus semua halaman sebelumnya dan menuju ke Homepage
+                        getX.Get.offAll(() => HomePageView()); // Menghapus semua halaman sebelumnya dan menuju ke Homepage
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Login successful!')),
                         );
