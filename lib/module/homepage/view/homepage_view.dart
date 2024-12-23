@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/Routes/routes.dart';
 import 'package:klinik_shoes_project/core.dart';
 import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
 import 'package:get/get.dart' as getX;
 import 'package:klinik_shoes_project/module/location/view/map_view.dart';
-import 'package:klinik_shoes_project/model/profile_model.dart';
 
 class HomePageView extends StatefulWidget {
   final HomePageController controller = getX.Get.put(HomePageController());
@@ -82,13 +80,12 @@ class _HomePageViewState extends State<HomePageView> {
   Widget _buildTopSection(BuildContext context) {
     return Row(
       mainAxisAlignment:
-          MainAxisAlignment.spaceBetween, // Space between sections
+          MainAxisAlignment.spaceBetween,
       crossAxisAlignment:
-          CrossAxisAlignment.start, // Align at the start of the cross axis
+          CrossAxisAlignment.start,
       children: [
-        // Left side: Hello and address section
         Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // Align text to the left
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Hello text
           Text(
@@ -208,7 +205,7 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   // Categories section with GridView
-  Widget _buildCategoriesSection() {
+   Widget _buildCategoriesSection() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -276,37 +273,45 @@ class _HomePageViewState extends State<HomePageView> {
           getX.Get.toNamed(AppRoutes.one_day_order);
         }
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center, // Center vertically
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4.0,
-                  offset: Offset(0, 4),
-                ),
-              ],
+      child: SizedBox(
+        height: 82.7, // Match the container height from the error message
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // Use minimum space needed
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12.0),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4.0,
+                    offset: Offset(0, 4),
+                  ),
+                ],
+              ),
+              child: Image.asset(
+                assetPath,
+                height: 35, // Slightly reduced from 40
+                width: 35, // Slightly reduced from 40
+                fit: BoxFit.contain,
+              ),
             ),
-            child: Image.asset(
-              assetPath,
-              height: 40,
-              width: 40,
+            SizedBox(height: 5), // Reduced from 10
+            Flexible(
+              // Wrap text in Flexible
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 10), // Slightly reduced from 12
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
-          ),
-          SizedBox(height: 10), // Gap between image and text
-          Text(
-            title,
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 12, color: Colors.black),
-            maxLines: 2, // Limit maximum lines to 2
-            overflow: TextOverflow.ellipsis, // Add ellipsis if overflow
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

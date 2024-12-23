@@ -11,8 +11,7 @@ void main() async {
 
   final fcmService = FCMService();
   fcmService.init();
-
-  // Initialize the Dependency Injection  
+ 
   DependencyInjection.init();
   await GetStorage.init();
 
@@ -27,8 +26,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      initialRoute: AppRoutes.getHomeRoute(),  // Set the initial route based on your routing setup
-      getPages: AppRoutes.routes,  // Set up your page routes from AppRoutes
+      initialRoute: AppRoutes.getHomeRoute(),
+      getPages: AppRoutes.routes,
     );
   }
 }

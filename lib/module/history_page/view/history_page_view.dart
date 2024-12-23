@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:klinik_shoes_project/module/cart_page/view/cart_page_view.dart';
+import 'package:klinik_shoes_project/module/history_detail/view/history_detail_view.dart';
 import 'package:klinik_shoes_project/module/homepage/view/homepage_view.dart';
-import 'package:klinik_shoes_project/module/homepage/controller/homepage_controller.dart';
 import 'package:klinik_shoes_project/module/profile_page/view/profile_view.dart';
 
 class HistoryPage extends StatefulWidget {
@@ -32,7 +32,6 @@ class _HistoryPageState extends State<HistoryPage> {
                 builder: (context) => CartPage())); // Navigate to CartPage
         break;
       case 2:
-        // History is the current page, do nothing
         break;
       case 3:
         // Uncomment and replace with your ProfilePage when implemented
@@ -115,7 +114,12 @@ class _HistoryPageState extends State<HistoryPage> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // action for see detail
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => HistoryDetailView(),
+                                    ),
+                                  );
                                 },
                                 child: Text(
                                   'See detail',

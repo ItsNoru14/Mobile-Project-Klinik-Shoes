@@ -56,6 +56,25 @@ dependencies:
   flutter_compass: ^0.8.1
   connectivity_plus: ^6.1.1
   path_provider: ^2.1.5
+  icons_launcher: ^3.0.0
+  flutter_native_splash: ^2.4.3
+  flutter_launcher_icons: ^0.13.1
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: C:\Users\super\OneDrive\Documents\VSCODE_Kuliah\src\Semester 5\Mobile\klinik_shoes_project\asset\Icon_apk.png
+  android: true
+  ios: true
+
+icons_launcher:
+  color: "#ffffff"
+  image_path: C:\Users\super\OneDrive\Documents\VSCODE_Kuliah\src\Semester 5\Mobile\klinik_shoes_project\asset\Icon_apk.png
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
+  
 
 dev_dependencies:
   flutter_test:

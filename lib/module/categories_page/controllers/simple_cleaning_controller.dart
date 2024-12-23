@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:klinik_shoes_project/service/notification/NotificationService.dart';
@@ -16,6 +16,20 @@ class SimpleCleaningController extends GetxController {
   final int deliveryFee = 5000;
 
   List<String> pairOptions = ["1 pair", "2 pair", "3 pair"];
+
+  void pickDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(), // Tanggal default
+      firstDate: DateTime(2000), // Tanggal paling awal yang bisa dipilih
+      lastDate: DateTime(2100), // Tanggal paling akhir yang bisa dipilih
+    );
+
+    if (pickedDate != null) {
+      selectedDate.value =
+          "${pickedDate.day}-${pickedDate.month}-${pickedDate.year}";
+    }
+  }
 
   void onPairChanged(String? value) {
     selectedPair.value = value!;
@@ -49,5 +63,7 @@ class SimpleCleaningController extends GetxController {
     _notificationService.showDelayedNotification();
     Get.back();
   }
+
+  
 }
 

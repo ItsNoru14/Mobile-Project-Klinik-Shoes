@@ -138,13 +138,46 @@ class SignupPageView extends StatelessWidget {
   }
 
   Widget _buildSignUpButton(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () async {
+    return GestureDetector(
+      onTap: () async {
         await controller.signup();
       },
-      child: const Text('Sign Up'),
-      style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+      child: Container(
+        width: 350,
+        height: 50,
+        padding: const EdgeInsets.symmetric(horizontal: 103, vertical: 8),
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(width: 5, color: Color(0xFFA9EEE9)),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          shadows: [
+            BoxShadow(
+              color: Color(0x7F000000),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+              spreadRadius: 0,
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Text(
+              'Sign Up',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+                fontFamily: 'Sora',
+                fontWeight: FontWeight.w600,
+                height: 0.04,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

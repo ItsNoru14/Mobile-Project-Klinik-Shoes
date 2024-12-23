@@ -53,7 +53,7 @@ class SimpleCleaningView extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               const Text(
-                "Jasa simple cleaning sepatu yang menyeluruh...",
+                "Jasa simple cleaning sepatu yang menyeluruh dengan fokus membersihkan bagian clean midsole dan upper, membuat sepatu Anda kembali bersih dan segar.",
                 style: TextStyle(fontSize: 14, color: Colors.black54),
               ),
               const SizedBox(height: 20),
@@ -79,30 +79,30 @@ class SimpleCleaningView extends StatelessWidget {
                     ),
                   )),
               const SizedBox(height: 20),
-              const Text("Pick Date",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 8),
-              Obx(() => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black26),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.calendar_today,
-                            size: 16, color: Colors.black54),
-                        const SizedBox(width: 8),
-                        InkWell(
-                          onTap: controller.selectedDate,
-                          child: Text(
-                            controller.selectedDate.value,
-                            style: const TextStyle(color: Colors.black),
+                const Text("Pick Date",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const SizedBox(height: 8),
+                Obx(() => Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black26),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.calendar_today, size: 16, color: Colors.black54),
+                          const SizedBox(width: 8),
+                          InkWell(
+                            onTap: () => controller.pickDate(context), // Memanggil fungsi pickDate
+                            child: Text(
+                              controller.selectedDate.value,
+                              style: const TextStyle(color: Colors.black),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )),
+                        ],
+                      ),
+                    )),
+
               SizedBox(height: 20),
               Text("Tambahkan Foto atau Video Sepatu",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
